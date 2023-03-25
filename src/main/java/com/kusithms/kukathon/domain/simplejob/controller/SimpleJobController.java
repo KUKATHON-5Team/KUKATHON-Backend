@@ -32,7 +32,7 @@ public class SimpleJobController {
 
 	@GetMapping("/testSimpleJob")
 	public SimpleJobSearchRequest searchRequest(){
-		return new SimpleJobSearchRequest(new RegionDto("서울특별시", "가평군", "간석1동"), List.of(Category.BUILDER), true, WorkPeriodType.MORETHAN3YEAR);
+		return new SimpleJobSearchRequest(new RegionDto("서울특별시", "가평군", "간석1동"), List.of(Category.MAKER), true, WorkPeriodType.MORETHAN3YEAR);
 	}
 
 }
