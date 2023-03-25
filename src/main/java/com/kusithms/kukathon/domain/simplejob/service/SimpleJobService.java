@@ -14,7 +14,7 @@ import com.kusithms.kukathon.domain.simplejob.repository.SimpleJobQueryRepositor
 import com.kusithms.kukathon.domain.simplejob.repository.SimpleJobRepository;
 import com.kusithms.kukathon.domain.simplejob.service.dto.reqeust.SimpleJobSearchRequest;
 import com.kusithms.kukathon.domain.simplejob.service.dto.response.SearchJobResponse;
-import com.kusithms.kukathon.domain.simplejob.service.dto.response.SimpleJobDto;
+import com.kusithms.kukathon.domain.simplejob.service.dto.SimpleJobDto;
 
 import lombok.RequiredArgsConstructor;
 
