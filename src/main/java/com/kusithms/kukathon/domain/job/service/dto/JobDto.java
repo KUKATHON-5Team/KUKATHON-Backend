@@ -1,5 +1,8 @@
 package com.kusithms.kukathon.domain.job.service.dto;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 import com.kusithms.kukathon.domain.job.entity.*;
 import com.kusithms.kukathon.domain.simplejob.entity.Region;
 import com.kusithms.kukathon.domain.simplejob.entity.WorkTime;
@@ -14,27 +17,30 @@ public class JobDto {
 
     private WorkTimeDto workTimeDto;
 
-    private WorkPeriodType workPeriodType;
+    private String workPeriodType;
 
     private int recruitCount;
 
-    private Gender gender;
+    private String gender;
 
     private WorkAge workAge;
 
     private String detailAddress;
 
+    private int endDate;
+
     @Builder
-    public JobDto(String title, Category category, int hourWage, WorkTime workTime, WorkPeriodType workPeriodType, int recruitCount, Gender gender, WorkAge workAge, Region region) {
+    public JobDto(String title, Category category, int hourWage, WorkTime workTime, WorkPeriodType workPeriodType, int recruitCount, Gender gender, WorkAge workAge, Region region, int endDate) {
         this.title = title;
         this.category = category;
         this.hourWage = hourWage;
         this.workTimeDto = new WorkTimeDto(workTime);
-        this.workPeriodType = workPeriodType;
+        this.workPeriodType = workPeriodType.getName();
         this.recruitCount = recruitCount;
-        this.gender = gender;
+        this.gender = gender.getName();
         this.workAge = workAge;
         this.detailAddress = region.toAllRegionInfo();
+        this.endDate = endDate;
     }
 
     public static JobDto from(Job job){
@@ -48,6 +54,7 @@ public class JobDto {
                 .gender(job.getGender())
                 .workAge(job.getWorkAge())
                 .region(job.getSimpleJob().getRegion())
+                .endDate((int)Duration.between(job.getRecruitTime().getRecruitEndDate(), LocalDateTime.now()).toDays())
                 .build();
     }
 
@@ -83,13 +90,6 @@ public class JobDto {
         this.workTimeDto = workTimeDto;
     }
 
-    public WorkPeriodType getWorkPeriodType() {
-        return workPeriodType;
-    }
-
-    public void setWorkPeriodType(WorkPeriodType workPeriodType) {
-        this.workPeriodType = workPeriodType;
-    }
 
     public int getRecruitCount() {
         return recruitCount;
@@ -99,13 +99,6 @@ public class JobDto {
         this.recruitCount = recruitCount;
     }
 
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
 
     public WorkAge getWorkAge() {
         return workAge;
@@ -121,5 +114,29 @@ public class JobDto {
 
     public void setDetailAddress(String detailAddress) {
         this.detailAddress = detailAddress;
+    }
+
+    public void setWorkPeriodType(String workPeriodType) {
+        this.workPeriodType = workPeriodType;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public int getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(int endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getWorkPeriodType() {
+        return workPeriodType;
+    }
+
+    public String getGender() {
+        return gender;
     }
 }
