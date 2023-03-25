@@ -1,8 +1,7 @@
 package com.kusithms.kukathon.domain.job.entity;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -31,34 +30,33 @@ public class Job extends BaseEntity {
 	private Category category;
 
 	private int recruitCount;
+
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
-	private int minimumAge;
-	private int maxAge;
 
-	private String detailAddress;
+	@Embedded
+	private WorkAge workAge;
 
-	private LocalDateTime recruitStartDate;
-	private LocalDateTime recruitEndDate;
+	@Embedded
+	private RecruitTime recruitTime;
 
-	private String phoneNumber;
+	private PhoneNumber phoneNumber;
+
 	private long viewCount;
 
 	@OneToOne(mappedBy = "job")
 	private SimpleJob simpleJob;
 
 	@Builder
-	public Job(Category category, int recruitCount, Gender gender, int minimumAge, int maxAge, String detailAddress,
-		LocalDateTime recruitStartDate, LocalDateTime recruitEndDate, String phoneNumber) {
+	public Job(Category category, int recruitCount, Gender gender, WorkAge workAge, RecruitTime recruitTime,
+		PhoneNumber phoneNumber, long viewCount, SimpleJob simpleJob) {
 		this.category = category;
 		this.recruitCount = recruitCount;
 		this.gender = gender;
-		this.minimumAge = minimumAge;
-		this.maxAge = maxAge;
-		this.detailAddress = detailAddress;
-		this.recruitStartDate = recruitStartDate;
-		this.recruitEndDate = recruitEndDate;
+		this.workAge = workAge;
+		this.recruitTime = recruitTime;
 		this.phoneNumber = phoneNumber;
-		this.viewCount = 0;
+		this.viewCount = viewCount;
+		this.simpleJob = simpleJob;
 	}
 }
