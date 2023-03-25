@@ -1,12 +1,8 @@
 package com.kusithms.kukathon.domain.simplejob.entity;
 
-import java.time.Duration;
-import java.util.List;
-
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,18 +28,11 @@ public class SimpleJob extends BaseEntity {
 	private String title;
 	private String info;
 
-	private String week;
+	@Embedded
+	private WorkTime workTime;
 
-	private Duration startTime;
-	private Duration endTime;
-
-	@Enumerated(EnumType.STRING)
-	private Si si;
-
-	@Enumerated(EnumType.STRING)
-	private Gu gu;
-	@Enumerated(EnumType.STRING)
-	private Dong dong;
+	@Embedded
+	private Region region;
 
 	private int hourWage;
 	private String imageUrl;
@@ -53,17 +42,12 @@ public class SimpleJob extends BaseEntity {
 	private Job job;
 
 	@Builder
-	public SimpleJob(String title, String info, List<Week> week, Duration startTime, Duration endTime, Si si, Gu gu,
-		Dong dong,
+	public SimpleJob(String title, String info, WorkTime workTime, Region region,
 		int hourWage, String imageUrl, Job job) {
 		this.title = title;
 		this.info = info;
-		this.week = Week.parseToString(week);
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.si = si;
-		this.gu = gu;
-		this.dong = dong;
+		this.workTime = workTime;
+		this.region= region;
 		this.hourWage = hourWage;
 		this.imageUrl = imageUrl;
 		this.job = job;
