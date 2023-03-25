@@ -1,5 +1,6 @@
 package com.kusithms.kukathon.domain.simplejob.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -13,11 +14,9 @@ import com.kusithms.kukathon.common.BaseEntity;
 import com.kusithms.kukathon.domain.job.entity.Job;
 
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Getter
 @NoArgsConstructor
 public class SimpleJob extends BaseEntity {
 
@@ -36,14 +35,15 @@ public class SimpleJob extends BaseEntity {
 
 	private int hourWage;
 	private String imageUrl;
+	private boolean workInHome;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "job_id")
 	private Job job;
 
 	@Builder
 	public SimpleJob(String title, String info, WorkTime workTime, Region region,
-		int hourWage, String imageUrl, Job job) {
+		int hourWage, String imageUrl, Job job, boolean workInHome) {
 		this.title = title;
 		this.info = info;
 		this.workTime = workTime;
@@ -51,5 +51,42 @@ public class SimpleJob extends BaseEntity {
 		this.hourWage = hourWage;
 		this.imageUrl = imageUrl;
 		this.job = job;
+		this.workInHome = workInHome;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	public WorkTime getWorkTime() {
+		return workTime;
+	}
+
+	public Region getRegion() {
+		return region;
+	}
+
+	public int getHourWage() {
+		return hourWage;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public boolean getWorkInHome() {
+		return workInHome;
+	}
+
+	public Job getJob() {
+		return job;
 	}
 }

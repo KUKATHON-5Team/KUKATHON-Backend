@@ -29,4 +29,20 @@ public class Region {
 		this.dong = dong;
 		this.detailAddress = detailAddress;
 	}
+
+	public String toAllRegionSimpleInfo(){
+		StringBuilder stringBuilder = new StringBuilder();
+		return stringBuilder.append(si).append(" ")
+			.append(gu).append(" ")
+			.append(dong).append(" ").toString();
+	}
+
+	public String toAllRegionInfo(){
+		StringBuilder stringBuilder = new StringBuilder();
+		return stringBuilder.append(si).append(" ")
+			.append(gu).append(" ")
+			.append(dong).append(" ")
+			.append(detailAddress).toString();
+
+	}
 }
