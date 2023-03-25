@@ -34,7 +34,7 @@ public class Region {
 		StringBuilder stringBuilder = new StringBuilder();
 		return stringBuilder.append(si).append(" ")
 			.append(gu).append(" ")
-			.append(dong).append(" ").toString();
+			.append(dong).toString();
 	}
 
 	public String toAllRegionInfo(){
