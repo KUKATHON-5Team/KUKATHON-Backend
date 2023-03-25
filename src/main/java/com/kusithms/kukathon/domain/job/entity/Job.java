@@ -36,20 +36,22 @@ public class Job extends BaseEntity {
 
 	@Embedded
 	private WorkAge workAge;
-
 	@Embedded
 	private RecruitTime recruitTime;
+	@Embedded
+	private WorkPeriod workPeriod;
 
 	private PhoneNumber phoneNumber;
 
 	private long viewCount;
+
 
 	@OneToOne(mappedBy = "job")
 	private SimpleJob simpleJob;
 
 	@Builder
 	public Job(Category category, int recruitCount, Gender gender, WorkAge workAge, RecruitTime recruitTime,
-		PhoneNumber phoneNumber, long viewCount, SimpleJob simpleJob) {
+		PhoneNumber phoneNumber, long viewCount, SimpleJob simpleJob, WorkPeriod workPeriod) {
 		this.category = category;
 		this.recruitCount = recruitCount;
 		this.gender = gender;
@@ -58,5 +60,6 @@ public class Job extends BaseEntity {
 		this.phoneNumber = phoneNumber;
 		this.viewCount = viewCount;
 		this.simpleJob = simpleJob;
+		this.workPeriod  =workPeriod;
 	}
 }

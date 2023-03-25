@@ -17,7 +17,7 @@ public class SecurityConfig {
 		http.csrf().disable();
 
 		http.authorizeHttpRequests(
-			request -> request.anyRequest().authenticated()
+			request -> request.anyRequest().permitAll()
 		);
 
 		http.formLogin(login ->

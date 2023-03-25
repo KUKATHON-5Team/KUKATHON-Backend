@@ -2,16 +2,33 @@ package com.kusithms.kukathon.domain.simplejob.entity;
 
 import java.util.List;
 
-public enum Week {
-	MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
-	public static String parseToString(List<Week> weekList){
+@Slf4j
+@Getter
+public enum Week {
+	MONDAY("월"),
+	TUESDAY("화"),
+	WEDNESDAY("수"),
+	THURSDAY("목"),
+	FRIDAY("금"),
+	SATURDAY("토"),
+	SUNDAY("일");
+
+	private String week;
+
+	Week(String week) {
+		this.week = week;
+	}
+
+	public static String parseToString(List<Week> weekList) {
 		StringBuilder stringBuilder = new StringBuilder();
-		Week firstWeek = weekList.get(0);
-		weekList.remove(0);
-		stringBuilder.append(firstWeek);
-		for (Week week : weekList) {
-			stringBuilder.append(",").append(week.toString());
+		for(int i = 0; i<weekList.size(); i++) {
+			stringBuilder.append(weekList.get(i).getWeek());
+			if(i != weekList.size() - 1) {
+				stringBuilder.append(",");
+			}
 		}
 		return stringBuilder.toString();
 	}

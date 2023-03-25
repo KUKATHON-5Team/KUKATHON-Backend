@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Embeddable;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +18,7 @@ public class WorkTime {
 	private Duration startTime;
 	private Duration endTime;
 
+	@Builder
 	public WorkTime(List<Week> weekList, Duration startTime, Duration endTime) {
 		this.week = Week.parseToString(weekList);
 		this.startTime = startTime;
