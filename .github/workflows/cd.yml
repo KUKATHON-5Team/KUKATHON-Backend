@@ -58,5 +58,5 @@ jobs:
             docker stop ${{ secrets.DOCKER_REPO }}
             docker rm ${{ secrets.DOCKER_REPO }} 
             sudo docker pull ${{ secrets.DOCKER_ID }}/${{ secrets.DOCKER_REPO }} 
-            docker run -d --name ${{ secrets.DOCKER_REPO }} -p 8080:8080 ${{ secrets.DOCKER_ID }}/${{ secrets.DOCKER_REPO }}
+            docker run -d --name ${{ secrets.DOCKER_REPO }} -p 80:8080 ${{ secrets.DOCKER_ID }}/${{ secrets.DOCKER_REPO }}
             docker rmi -f $(docker images -f "dangling=true" -q)
