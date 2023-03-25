@@ -16,7 +16,16 @@ public class SecurityConfig {
 		http.cors();
 
 		http.authorizeHttpRequests(
-			request -> request.anyRequest().permitAll()
+			request -> request.anyRequest().authenticated()
+		);
+
+		http.formLogin(login ->
+			login.loginProcessingUrl("/login")
+		);
+
+		http.logout(logout ->
+			logout.logoutUrl("/logout")
+				.deleteCookies("JSESSIONID")
 		);
 
 		return http.build();
